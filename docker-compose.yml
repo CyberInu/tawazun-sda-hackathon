@@ -3,28 +3,31 @@ version: '3.8'
 services:
   mysql:
     image: mysql:latest
-    #container_name: cyberinu81/tawazun
+    container_name: mysql_container
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: goldenwaste_db
       MYSQL_USER: goldenuser
       MYSQL_PASSWORD: newpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
     networks:
       - my_network
 
   app:
     image: cyberinu81/tawazun
-    #container_name: cyberinu81/tawazun
+    container_name: tawazun_container
     depends_on:
       - mysql
     networks:
       - my_network
     environment:
-      DB_URL: mysql_goldenwaste
-      DB_PORT: 3306
-      DB_NAME: goldenwaste_db
-      DB_USERNAME: goldenuser
-      DB_PASSWORD: newpassword
+      DB_URL: ${DB_URL}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
     ports:
       - "8080:8080"
 
