@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mysql:
     image: mysql:latest
-    container_name: cyberinu81/tawazun
+    #container_name: cyberinu81/tawazun
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: goldenwaste_db
@@ -13,8 +13,8 @@ services:
       - my_network
 
   app:
-    # image: cyberinu81/tawazun
-    container_name: cyberinu81/tawazun
+    image: cyberinu81/tawazun
+    #container_name: cyberinu81/tawazun
     depends_on:
       - mysql
     networks:
