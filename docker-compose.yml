@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: cyberinu81/tawazun
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: goldenwaste_db
+      MYSQL_USER: goldenuser
+      MYSQL_PASSWORD: newpassword
+    networks:
+      - my_network
+
+  app:
+    # image: cyberinu81/tawazun
+    container_name: cyberinu81/tawazun
+    depends_on:
+      - mysql
+    networks:
+      - my_network
+    environment:
+      GOLDEN_DB_URL: mysql_goldenwaste
+      GOLDEN_DB_PORT: 3306
+      GOLDEN_DB_NAME: goldenwaste_db
+      GOLDEN_DB_USERNAME: goldenuser
+      GOLDEN_DB_PASSWORD: newpassword
+    ports:
+      - "8080:8080"
+
+networks:
+  my_network:
+    driver: bridge
+
