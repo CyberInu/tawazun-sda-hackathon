@@ -20,11 +20,11 @@ services:
     networks:
       - my_network
     environment:
-      GOLDEN_DB_URL: mysql_goldenwaste
-      GOLDEN_DB_PORT: 3306
-      GOLDEN_DB_NAME: goldenwaste_db
-      GOLDEN_DB_USERNAME: goldenuser
-      GOLDEN_DB_PASSWORD: newpassword
+      DB_URL: mysql_goldenwaste
+      DB_PORT: 3306
+      DB_NAME: goldenwaste_db
+      DB_USERNAME: goldenuser
+      DB_PASSWORD: newpassword
     ports:
       - "8080:8080"
 
